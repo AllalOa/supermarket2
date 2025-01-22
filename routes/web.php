@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
+Route::get('supervisor/dashboard', [AuthenticatedSessionController::class, 'showCards'])
+    ->middleware(['auth', 'verified', 'rolemanager:supervisor'])
+    ->name('supervisordash');
 
-
-
-Route::get('supervisor/dashboard', function () {
-    return view('supervisordash');
-})->middleware(['auth', 'verified', 'rolemanager:supervisor'])->name('supervisordash');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

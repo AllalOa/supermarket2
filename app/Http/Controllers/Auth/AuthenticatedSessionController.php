@@ -8,9 +8,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
+
+
     /**
      * Display the login view.
      */
@@ -22,18 +25,28 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
+
+
+
+
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
+
         $request->session()->regenerate();
 
         $authuserrole = Auth::user()->role;
-
+        $user = Auth::user();
+        $user->update(['status' => 1]);
         // Redirect to the appropriate dashboard based on user role
         if ($authuserrole == 0) {
             return redirect()->intended(route('supervisordash', absolute: false));
         } else {
+            // Update the user's status to 1 in the database
+
             return redirect()->intended(route('cashierdash', absolute: false));
         }
     }
@@ -43,12 +56,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+        $user->update(['status' => 0]);
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        
         return redirect('/');
     }
+
+    public function showCards()
+{
+    // Fetch all users with role = 1
+    $users = User::where('role', 1)->get();
+
+    // Pass the users to the view
+    return view('supervisordash', compact('users'));
+}
 }

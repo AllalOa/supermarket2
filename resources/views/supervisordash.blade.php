@@ -156,14 +156,83 @@
 
             <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg pb-6">
                         <div class="p-6 text-gray-900">
                             {{ __("You're logged in!") }}
                         </div>
+                        
+                
+                <!--card start-->
+
+
+<!-- resources/views/cards/index.blade.php -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row g-4 justify-content-center">
+        @foreach($users as $user)
+            <div class="col-md-4 col-sm-6">
+                <div class="card border-0 shadow" style="perspective: 1000px;">
+                    <div class="d-flex flex-column" style="transition: transform 0.6s; transform-style: preserve-3d; height: 400px;"
+                         onmouseover="this.style.transform='rotateY(180deg)'" 
+                         onmouseout="this.style.transform='rotateY(0deg)'">
+                        <!-- Front Side -->
+                        <div class="card-front position-absolute w-100 h-100  text-black d-flex flex-column justify-content-center align-items-center" 
+                             style="backface-visibility: hidden; border-radius: 10px;">
+                            <img src="{{ $user->avatar_url ?? 'https://picsum.photos/200/300' }}" 
+                                 alt="User Image" class="rounded-circle border border-white mb-3" 
+                                 style="width: 160px; height: 160px;">
+                            <h3 class="mb-1 ">{{ $user->name }}</h3>
+                            <p class="mb-0">Role: {{ $user->role == 1 ? 'Cashier' : 'Other' }}</p>
+                        </div>
+                        <!-- Back Side -->
+                        <div class="card-back position-absolute w-100 h-100 bg-white text-dark d-flex flex-column justify-content-center align-items-center p-3" 
+                             style="transform: rotateY(180deg); backface-visibility: hidden; border-radius: 10px;">
+                            <h3 class="text-success mb-3">Informations</h3>
+                            <ul class="list-unstyled text-start">
+                                <li><strong>ID:</strong> {{ $user->id }}</li>
+                                <li><strong>Name:</strong> {{ $user->name }}</li>
+                                <li><strong>Email:</strong> {{ $user->email }}</li>
+                               
+                                @if ($user->status == 1)
+                                <li> <strong>Solde: </strong> 2500 DA</li>
+                                   <li style="color: #25cb28">  <i class="fa-solid fa-circle-dot" style="color: #25cb28;"></i> Active</li> 
+                                   
+                                @else
+                                <li style="color: #ff0000" >   <i class="fa-solid fa-circle-dot" style="color: #ff0000;"> </i> NonActive</li>
+                                @endif
+                                
+                            </ul>
+                        </div>
                     </div>
                 </div>
-        </main>
+            </div>
+        @endforeach
     </div>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+                <!--card end-->
+                    </div>
+                </div>
+                
+        </main>
+
+        <footer class=" text-white text-center py-3 mt-5" style="background-color: #343A40 ">
+            <p class="mb-0">&copy; ENPEI - 2025</p>
+        </footer>
+    </div>
+
+
+
+
 </body>
 
 </html>
