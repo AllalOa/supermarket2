@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+ use App\Models\User;
+ use Illuminate\Support\Facades\Hash;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -16,6 +18,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+/**
+$user = User::find(1);  // Find the user whose password needs to be hashed
+$user->password = Hash::make('Allal@668');  // Hash the password
+$user->save(); */
         return view('auth.login');
     }
 
