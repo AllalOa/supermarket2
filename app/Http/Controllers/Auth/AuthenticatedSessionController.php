@@ -8,12 +8,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-<<<<<<< HEAD
-use App\Models\User;
-=======
+
+
+
  use App\Models\User;
  use Illuminate\Support\Facades\Hash;
->>>>>>> 8925a9c51e44c972c03cd92d6fa3b06a0c7a08d3
+
 
 class AuthenticatedSessionController extends Controller
 {

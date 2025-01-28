@@ -2,15 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-=======
+
 use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
->>>>>>> 8925a9c51e44c972c03cd92d6fa3b06a0c7a08d3
+
 
 Route::get('supervisor/dashboard', [AuthenticatedSessionController::class, 'showCards'])
     ->middleware(['auth', 'verified', 'rolemanager:supervisor'])
