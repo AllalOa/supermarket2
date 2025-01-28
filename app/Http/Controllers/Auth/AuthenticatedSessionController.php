@@ -26,7 +26,7 @@ class AuthenticatedSessionController extends Controller
     {
 /**
 $user = User::find(1);  // Find the user whose password needs to be hashed
-$user->password = Hash::make('Allal@668');  // Hash the password
+$user->password = Hash::make('your pass');  // Hash the password
 $user->save(); */
         return view('auth.login');
     }
